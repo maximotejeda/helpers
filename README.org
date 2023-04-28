@@ -1,0 +1,31 @@
+#+AUTHOR: Maximo Tejeda
+#+EMAIL: maximotejeda@gmail.com
+
+* Holpers
+A group of functions that i repeat thought distincts projects so
+to avoid repeat myself, and mantain my code Dry ill throw them here
+
+** JWT
+An implementation of Json Web Tokens the bad way
+First i create keys RSA 4096 keys with which i conver to PEM
+conver to STR and write to disk in case of replication on
+my k8s create a folder /keys on the root of where you call it.
+
+Create a struct JWT with all the Methods needed to create, refresh,
+revoque, validate tokens and at the same time rotate keys on the fly
+been able to create new keys and invalidate the old ones when needed.
+
+TODO
+1. Make possible scale and read a changing key from multiples instances
+2. Signal all the instance the new key is created to sync
+3. A lot more
+   
+** Logs
+Created mainly to ease my vision through the logs, in my work i wish i could
+have those stimulus of loger with colors to distingish bad things from good values
+is linited to what i've been needing in the rest services logs.
+** Midlewares
+Typical middlewares
+1. Validate token
+2. Validate Admin
+3. //TODO: Cors
