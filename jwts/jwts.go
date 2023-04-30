@@ -196,7 +196,7 @@ func (j *JWT) RefreshToken(tokenStr string) (string, error) {
 		if tokenTTLInt <= 0 {
 			tokenTTLInt = 60
 		}
-		if (now-expNum) <= int64(tokenTTLInt) && (now-expNum) > 0 {
+		if (now-expNum) <= int64(tokenTTLInt*2) && (now-expNum) > 0 {
 			//TODO modify the durarions
 			newToken, err := j.Create(claims["dat"])
 			if err != nil {
