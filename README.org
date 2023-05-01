@@ -29,5 +29,7 @@ Typical middlewares
 1. Validate token
 2. Validate Admin
 3. //TODO: Cors
-**  Mail
+**  Mails
 Configure and send emails with 2 preformated bodies
+1. auth/Recover
+2. auth/activate 
