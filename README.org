@@ -1,7 +1,7 @@
 #+AUTHOR: Maximo Tejeda
 #+EMAIL: maximotejeda@gmail.com
 
-* Holpers
+* Helpers
 A group of functions that i repeat thought distincts projects so
 to avoid repeat myself, and mantain my code Dry ill throw them here
 
