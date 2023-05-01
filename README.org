@@ -31,5 +31,8 @@ Typical middlewares
 3. //TODO: Cors
 **  Mails
 Configure and send emails with 2 preformated bodies
+
 1. auth/Recover
-2. auth/activate 
+2. auth/Activate
+
+I will take the route to separate the distinct bodies by folders 
