@@ -61,6 +61,7 @@ func (j *JWT) Renew() {
 	j.privatePemStr = exportRSAPrivateKeyAsPemStr(priv)
 	j.PublicPemStr, _ = exportRSAPublicKeyAsPemStr(pub)
 	j.writeToDisk()
+	log.Print("Keys Renewed")
 	//fmt.Printf("\nPrivatekeyPem: %s\n\n PublicKeyPem: %s", j.privatePemStr, j.publicPemStr)
 }
 
@@ -104,6 +105,7 @@ func (j *JWT) ReadFromDisk() {
 	if err != nil {
 		panic(err)
 	}
+	log.Print("readed keys from disk")
 }
 
 func (j *JWT) Create(content interface{}) (token string, err error) {
