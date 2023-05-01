@@ -1,11 +1,11 @@
-package mail
+package mails
 
 import (
 	"fmt"
 	"net/smtp"
 	"os"
 
-	a "github.com/maximotejeda/helpers/mail/auth"
+	a "github.com/maximotejeda/helpers/mails/auth"
 )
 
 var (
