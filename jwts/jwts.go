@@ -61,20 +61,19 @@ func (j *JWT) Renew() {
 	j.privatePemStr = exportRSAPrivateKeyAsPemStr(priv)
 	j.PublicPemStr, _ = exportRSAPublicKeyAsPemStr(pub)
 	j.writeToDisk()
-	log.Print("Keys Renewed")
 	//fmt.Printf("\nPrivatekeyPem: %s\n\n PublicKeyPem: %s", j.privatePemStr, j.publicPemStr)
 }
 
 // writeToDisk every time new keys are issued write them to disk overwriting the actuals
 func (j *JWT) writeToDisk() {
 	err := os.Mkdir("keys", 0770)
-	if err != nil {
-		fmt.Printf("\n%v\n", err)
+	if err != nil && !errors.Is(err, os.ErrExist) {
+		log.Printf("\n%v\n", err)
 	}
 
 	err = os.WriteFile(publicKeyDir, []byte(j.PublicPemStr), 0644)
 	if err != nil {
-		fmt.Printf("%v\n", err)
+		log.Printf("%v\n", err)
 	}
 	err = os.WriteFile(PrivateKeyDir, []byte(j.privatePemStr), 0644)
 	if err != nil {
@@ -105,7 +104,6 @@ func (j *JWT) ReadFromDisk() {
 	if err != nil {
 		panic(err)
 	}
-	log.Print("readed keys from disk")
 }
 
 func (j *JWT) Create(content interface{}) (token string, err error) {
