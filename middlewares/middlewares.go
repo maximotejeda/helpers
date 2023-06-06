@@ -35,11 +35,20 @@ type ValidatedRequest struct {
 // Validate token header to manage auth
 func Validated(GlobalKeys *jwts.JWT) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		var s string
 		token := c.GetHeader("Authorization")
-		s := strings.Replace(token, "Bearer ", "", 1)
+
+		if strings.Contains(token, " ") { // If the token does not contains the "Bearer " return err
+			s = token[7:]
+		} else {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Malformed Token"})
+			c.Abort()
+			return
+		}
+
 		claims, err := GlobalKeys.Validate(s)
 		if err != nil {
-			c.JSON(http.StatusUnauthorized, gin.H{"err": err.Error()})
+			c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 			c.Abort()
 			return
 		} else {
